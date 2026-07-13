@@ -1,0 +1,5 @@
+.ipynb_checkpoints/
+.DS_Store
+*.zip
+INSTRUCTOR_NOTES.md
+quiz_answer_key.md
