@@ -1,0 +1,16 @@
+name: eneza-python
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - jupyter
+  - notebook
+  - pandas
+  - seaborn
+  - matplotlib
+  - numpy
+  - openpyxl
+  - pip:
+    - plotly
