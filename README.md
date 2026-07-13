@@ -4,26 +4,24 @@ Welcome! This repository contains the teaching materials, notebooks, and referen
 
 It is designed for instructors and learners who want a complete, hands-on introduction to Python for data science, from fundamentals to Pandas, NumPy, and visualization.
 
-## 📦 Repository Contents
+## Repository Contents
 
 | File | Purpose |
 |------|----------|
 | `Python_Zero_to_Hero_Workshop.ipynb` | Main interactive notebook for teaching and hands-on practice |
-| `INSTRUCTOR_NOTES.md` | Timing guide, setup instructions for WSL/Linux, and teaching tips |
 | `python_cheat_sheet.md` | One-page reference for participants |
-| `post_session_quiz.md` | Review quiz with answer key |
+| `post_session_quiz.md` | Review quiz |
 | `environment.yml` | Conda environment specification (installs Python, Jupyter, Pandas, Seaborn, etc.) |
 | `environment_miniforge.yml` | Same environment, optimized for Miniforge (conda-forge only) |
-| `ENEZA Training Program Curriculum.pdf` | Original full curriculum |
 | `python_tutorial_notebook.ipynb` | Original reference notebook (kept as archive) |
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone this repository
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/Eneza_Data_Science_Python_tutorial.git
-cd Eneza_Data_Science_Python_tutorial
+git clone https://github.com/Rodneyomukuti/eneza-python-training.git
+cd eneza-python-training
 ```
 
 ### 2. Create the environment
@@ -98,4 +96,4 @@ If you must fit everything into one day, focus on the essentials and treat the l
 
 ---
 
-Good luck with the training on Tuesday!
+Good luck!
