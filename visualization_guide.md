@@ -1,6 +1,6 @@
 # Data Visualization with Python — A Follow-Along Guide
 
-This guide walks you through Part 12 of the workshop notebook at your own pace. Everything here runs in `Python_Zero_to_Hero_Workshop.ipynb`, but the code is also included in full below, so you can copy any block into a fresh notebook and experiment.
+This guide walks you through Parts 12 and 13 of the workshop notebook at your own pace: data visualization first, then NumPy, the engine underneath it all. Everything here runs in `Python_Zero_to_Hero_Workshop.ipynb`, but the code is also included in full below, so you can copy any block into a fresh notebook and experiment.
 
 Why bother with plots at all? Because nobody in a hospital board meeting wants to see your DataFrame, and nobody at a conference wants your CSV. They want the picture. A good plot is worth a thousand rows — and unlike the thousand rows, people will actually look at it.
 
