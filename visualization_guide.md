@@ -210,11 +210,129 @@ Using `viz_df` from section 4:
 
 Both tasks are copy-and-adapt jobs from sections 7 and 9. Change more than the variable names: retitle, relabel, make the plot yours.
 
-## 13. Where to go next
+## 13. NumPy: the engine under the hood
+
+One more toolbox — the last one, and the deepest. Under Pandas, under Seaborn, under half of scientific Python, sits NumPy. It does one thing supremely well: arrays of numbers, fast. If Pandas is the ward, NumPy is the plumbing and electricity. This corresponds to Part 13 of the workshop notebook.
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 5])
+b = np.zeros(5)
+c = np.ones((2, 3))
+d = np.arange(0, 10, 2)
+
+print('a:', a)
+print('b:', b)
+print('c:', c)
+print('d:', d)
+```
+
+Four ways to make an array:
+
+- `np.array([1, 2, 3, 4, 5])` — decode the dots: "numpy, use your array tool, on this ordinary list." Out comes an array: looks like a list, behaves like a rocket.
+- `np.zeros(5)` — five zeros. Why would anyone want zeros? Placeholders. You build the empty container first and fill it with results later, like labelling tubes before the samples arrive.
+- `np.ones((2, 3))` — ones, but look: double parentheses again. We hand it one instruction, the pair (2, 3) — two rows, three columns. Your first two-dimensional array; a tiny spreadsheet of ones.
+- `np.arange(0, 10, 2)` — start at 0, stop before 10, step by 2. Like the `range()` you met with loops, but it makes an array. And as always in Python, the stop value is excluded: 0, 2, 4, 6, 8 — no 10.
+
+## 14. Vectorized operations: no loop needed
+
+Before running this, make a prediction: what does `a + 10` do — an error, or something else?
+
+```python
+a = np.array([1, 2, 3, 4, 5])
+
+print('a + 10:', a + 10)
+print('a * 2:', a * 2)
+print('a squared:', a ** 2)
+print('a > 3:', a > 3)
+```
+
+Every element, one operation, no loop. This is called vectorization, and it is NumPy's party trick: most of the numeric loops you would otherwise write simply become unnecessary.
+
+Look closely at the last line. `a > 3` did not give one answer — it asked all five elements "are you greater than 3?" and returned an array of True and False. Hold that thought; it pays off in the next section.
+
+Arrays also work element by element with each other — first with first, second with second:
+
+```python
+b = np.array([10, 20, 30, 40, 50])
+print('a + b:', a + b)
+print('a * b:', a * b)
+```
+
+## 15. Grabbing pieces: indexing, slicing, and the boolean mask
+
+```python
+arr = np.array([10, 20, 30, 40, 50, 60])
+
+print('First element:', arr[0])
+print('Last element:', arr[-1])
+print('Slice [1:4]:', arr[1:4])
+print('Elements > 30:', arr[arr > 30])
+```
+
+- Square brackets mean "grab", as ever. Position 0 is the first element — Python counts from zero. Minus 1 counts from the end.
+- The slice `1:4` grabs positions 1, 2, and 3 — stop excluded, same rule as `arange`, same rule as everywhere.
+- The last line is the payoff from the previous section. Read it inside out: `arr > 30` asks every element "are you over 30?" and gets back True/False. Feed that back into the grab brackets, and only the Trues survive. One readable line: "give me the elements over 30."
+
+This is called a boolean mask, and it is the same filter whatever your field: all patients with BP above 140, all sequencing reads with quality above 30, all observations beyond the threshold. One pattern, every discipline.
+
+## 16. Statistics, and why the median earns its salary
+
+Before running this, look at the numbers: 12, 15, 18, 21, 24 — and then 100. Predict: will the mean be bigger or smaller than the median?
+
+```python
+nums = np.array([12, 15, 18, 21, 24, 100])
+
+print('Mean:', np.mean(nums))
+print('Median:', np.median(nums))
+print('Standard deviation:', np.std(nums))
+print('Min:', np.min(nums))
+print('Max:', np.max(nums))
+```
+
+The mean comes out around 31.7 — higher than five of the six actual values. The median sits at 19.5 and barely noticed the intruder. One outlier dragged the mean far from the typical value, the way the average salary in a room jumps the moment a billionaire walks in: technically correct, describes nobody.
+
+This is why skewed data — income, hospital length-of-stay, gene expression — is usually reported with medians. Whenever you report a mean, ask yourself who the billionaire in your data might be.
+
+## 17. The race: why everyone builds on NumPy
+
+One final experiment. A million numbers, multiply each by 2. Contestant one: a Python list with a loop. Contestant two: a NumPy array. Before you run it, place a bet — how many times faster is NumPy?
+
+```python
+import time
+
+py_list = list(range(1000000))
+np_arr = np.arange(1000000)
+
+start = time.time()
+result = [x * 2 for x in py_list]
+print('Python list time:', time.time() - start)
+
+start = time.time()
+result = np_arr * 2
+print('NumPy array time:', time.time() - start)
+```
+
+On most machines NumPy wins by a factor of ten to a hundred. The Python list is a matatu making every stop; NumPy is the express — same route, no stops.
+
+This is not a party trick. On a genome with three billion bases, or a national health dataset, this is the difference between a coffee break and come-back-tomorrow. It is also why Pandas, Seaborn, scikit-learn, and most of scientific Python are built on NumPy underneath.
+
+## 18. Practice
+
+1. Create a NumPy array of the numbers 1 to 10 (hint: `np.arange` — mind the excluded stop).
+2. Multiply every element by 3.
+3. Keep only the elements greater than 15, using a boolean mask.
+4. Compute the mean of what remains.
+
+You are chaining the three skills from this half of the guide: vectorized math, a boolean mask, and a statistic. If your final answer is 24, everything worked.
+
+## 19. Where to go next
 
 - More Seaborn: facet grids, regression plots, pair plots — [seaborn.pydata.org](https://seaborn.pydata.org/)
 - Interactive plots and dashboards: Plotly and Streamlit
 - For R converts: plotnine, the ggplot grammar in Python
+- NumPy in depth: [numpy.org/doc](https://numpy.org/doc/stable/)
 - The gallery method: browse the [matplotlib gallery](https://matplotlib.org/stable/gallery/) or [seaborn gallery](https://seaborn.pydata.org/examples/), find a plot you like, copy its code, and bend it to your data. This is how everyone actually learns visualization.
 
 You now have the decoder ring: owner, dot, action. Grab with brackets, do with parentheses. You can read Python. Happy plotting.
